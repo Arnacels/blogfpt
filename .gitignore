@@ -1,0 +1,4 @@
+/venv
+/likeblog/db.sqlite3
+/likeblog/sk.txt
+/.idea

@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block title %}My amazing blog{% endblock %}
+{% block content_left %}
+{% load static %}
+{% get_media_prefix as MEDIA_PREFIX %}
+
+<div >
+        <form class="form" method="post">{% csrf_token %}
+            {% for field in form %}
+                {{ field.errors }}
+                {{ field.label_tag }}
+                <div class="field">{{ field }}</div>
+                {% if field.help_text %}
+                <p class="help">{{ field.help_text|safe }}</p>
+                {% endif %}
+            {% endfor %}
+            <input type="submit" value="Save">
+        </form>
+</div>
+
+{% endblock %}

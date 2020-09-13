@@ -1,0 +1,25 @@
+{% extends "right_column.html" %}
+{% block title %}My amazing blog{% endblock %}
+{% block content_left %}
+{% load static %}
+{% get_media_prefix as MEDIA_PREFIX %}
+{% for post in object_list %}
+
+<div class="card">
+    <div class="text">
+        <div class="fakeimg"
+             style="background: url('{{ MEDIA_PREFIX }}{{post.icon}}') 50% 50% / 50% 50% no-repeat;">
+        </div>
+        <h2><a href="{%url 'post_detail' post.id%}">{{ post.title }}</a></h2>
+        <h5>{{ post.description }} {{ post.date }}</h5>
+    </div>
+</div>
+{% endfor %}
+
+{% for page in paginator.page_range %}
+
+
+<a href="?page={{ page }}">{{ page }}</a>
+{% endfor %}
+
+{% endblock %}

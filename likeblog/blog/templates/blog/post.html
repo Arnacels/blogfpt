@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% block title %}My amazing blog{% endblock %}
+{% block content_left %}
+{% load static %}
+{% get_media_prefix as MEDIA_PREFIX %}
+<div class="card">
+    <div class="text">
+        <div class="fakeimg"
+             style="background: url('{{ MEDIA_PREFIX }}{{post.icon}}') 100% 100% / 100% 100% no-repeat;">
+
+        </div>
+
+        <h2>{{ post.title }}</h2>
+        <h5>{{ post.description }} {{ post.date }}</h5>
+        <p>{{ post.text }}</p>
+        <div class="footer-card">
+            {%if user not in post.likes_user.all%}
+            <div class="info">
+                <button class="like">Like {{post.likes_user.count}}</button>
+            </div>
+            {%else%}
+                <div class="info">
+                Likes {{post.likes_user.count}}
+            </div>
+            {%endif%}
+            <div class="info">Views {{ post.views }}</div>
+            <div class="info">{{ post.date |date}}</div>
+        </div>
+    </div>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="{% static 'js/like.js' %}"></script>
+
+{% endblock %}

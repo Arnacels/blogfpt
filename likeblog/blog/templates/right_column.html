@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% load static %}
+{% get_media_prefix as MEDIA_PREFIX %}
+{% block content_right %}
+<div class="rightcolumn">
+    <div class="card">
+        {%if user.is_authenticated%}
+        <h2>{{user.username}}</h2>
+        <ul>
+            <li>
+                <a href="{%url 'post_create'%}">Create post</a>
+            </li>
+            <li>
+                <a href="{%url 'profile'%}">Profile</a>
+            </li>
+            <li>
+                <a href="{%url 'profile_logout'%}">Logout</a>
+            </li>
+        </ul>
+        {%else%}
+        <h2>Please login</h2>
+        <ul>
+            <li>
+                <a href="{%url 'login'%}">Login</a>
+            </li>
+        </ul>
+        {%endif%}
+    </div>
+    {%if object_list%}
+    <div class="card">
+        <h3>Popular Post</h3>
+        {%for post in posts|slice:":2"%}
+            <div class="text"><a href="{%url 'post_detail' post.id%}">{{ post.title }}</a></div>
+        {%endfor%}
+    </div>
+    {%endif%}
+    <div class="card">
+        <h3>Follow Me</h3>
+        <p>Some text..</p>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,13 @@
+{% extends "right_column.html" %}
+
+{% block content_left %}
+    <div class="profile">
+        <ul>
+            <li>{{user.username}}  its your post</li>
+            {%for post in posts%}
+            <li><a href="{%url 'post_detail' post.id%}">{{post.title}}</a> <a href="{%url 'post_edit' post.id%}">edit post</a></li>
+            {% endfor %}
+        </ul>
+
+    </div>
+{% endblock %}
